@@ -1,4 +1,4 @@
-<mujoco model="iiwa14 scene">
+<mujoco model="Tesollo DG5F scene">
   <include file="dg5f_right.xml"/>
 
   <!-- <include file="iiwa14_prefix.xml" prefix="r1" pos="0.0 0.0 0.0"/> -->
