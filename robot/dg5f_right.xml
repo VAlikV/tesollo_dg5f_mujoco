@@ -14,40 +14,40 @@
     </default>
   </default>
 
-  <compiler angle="radian" />
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
   <option integrator="implicitfast"/>
 
   <asset>
     <material name="default_material" rgba="0.7 0.7 0.7 1" />
     <material name="collision_material" rgba="0.7 0.7 0.7 1" />
-    <mesh name="rl_dg_mount_c.STL" file="meshes/dg5f_right/collision/rl_dg_mount_c.STL" />
-    <mesh name="rl_dg_base_c.STL" file="meshes/dg5f_right/collision/rl_dg_base_c.STL" />
-    <mesh name="rl_dg_palm_c.STL" file="meshes/dg5f_right/collision/rl_dg_palm_c.STL" />
-    <mesh name="rl_dg_1_1_c.STL" file="meshes/dg5f_right/collision/rl_dg_1_1_c.STL" />
-    <mesh name="rl_dg_1_2_c.STL" file="meshes/dg5f_right/collision/rl_dg_1_2_c.STL" />
-    <mesh name="rl_dg_1_3_c.STL" file="meshes/dg5f_right/collision/rl_dg_1_3_c.STL" />
-    <mesh name="rl_dg_1_4_c.STL" file="meshes/dg5f_right/collision/rl_dg_1_4_c.STL" />
-    <mesh name="rl_dg_1_tip_c.STL" file="meshes/dg5f_right/collision/rl_dg_1_tip_c.STL" />
-    <mesh name="rl_dg_2_1_c.STL" file="meshes/dg5f_right/collision/rl_dg_2_1_c.STL" />
-    <mesh name="rl_dg_2_2_c.STL" file="meshes/dg5f_right/collision/rl_dg_2_2_c.STL" />
-    <mesh name="rl_dg_2_3_c.STL" file="meshes/dg5f_right/collision/rl_dg_2_3_c.STL" />
-    <mesh name="rl_dg_2_4_c.STL" file="meshes/dg5f_right/collision/rl_dg_2_4_c.STL" />
-    <mesh name="rl_dg_2_tip_c.STL" file="meshes/dg5f_right/collision/rl_dg_2_tip_c.STL" />
-    <mesh name="rl_dg_3_1_c.STL" file="meshes/dg5f_right/collision/rl_dg_3_1_c.STL" />
-    <mesh name="rl_dg_3_2_c.STL" file="meshes/dg5f_right/collision/rl_dg_3_2_c.STL" />
-    <mesh name="rl_dg_3_3_c.STL" file="meshes/dg5f_right/collision/rl_dg_3_3_c.STL" />
-    <mesh name="rl_dg_3_4_c.STL" file="meshes/dg5f_right/collision/rl_dg_3_4_c.STL" />
-    <mesh name="rl_dg_3_tip_c.STL" file="meshes/dg5f_right/collision/rl_dg_3_tip_c.STL" />
-    <mesh name="rl_dg_4_1_c.STL" file="meshes/dg5f_right/collision/rl_dg_4_1_c.STL" />
-    <mesh name="rl_dg_4_2_c.STL" file="meshes/dg5f_right/collision/rl_dg_4_2_c.STL" />
-    <mesh name="rl_dg_4_3_c.STL" file="meshes/dg5f_right/collision/rl_dg_4_3_c.STL" />
-    <mesh name="rl_dg_4_4_c.STL" file="meshes/dg5f_right/collision/rl_dg_4_4_c.STL" />
-    <mesh name="rl_dg_4_tip_c.STL" file="meshes/dg5f_right/collision/rl_dg_4_tip_c.STL" />
-    <mesh name="rl_dg_5_1_c.STL" file="meshes/dg5f_right/collision/rl_dg_5_1_c.STL" />
-    <mesh name="rl_dg_5_2_c.STL" file="meshes/dg5f_right/collision/rl_dg_5_2_c.STL" />
-    <mesh name="rl_dg_5_3_c.STL" file="meshes/dg5f_right/collision/rl_dg_5_3_c.STL" />
-    <mesh name="rl_dg_5_4_c.STL" file="meshes/dg5f_right/collision/rl_dg_5_4_c.STL" />
-    <mesh name="rl_dg_5_tip_c.STL" file="meshes/dg5f_right/collision/rl_dg_5_tip_c.STL" />
+    <mesh name="rl_dg_mount_c.STL" file="dg5f_right/collision/rl_dg_mount_c.STL" />
+    <mesh name="rl_dg_base_c.STL" file="dg5f_right/collision/rl_dg_base_c.STL" />
+    <mesh name="rl_dg_palm_c.STL" file="dg5f_right/collision/rl_dg_palm_c.STL" />
+    <mesh name="rl_dg_1_1_c.STL" file="dg5f_right/collision/rl_dg_1_1_c.STL" />
+    <mesh name="rl_dg_1_2_c.STL" file="dg5f_right/collision/rl_dg_1_2_c.STL" />
+    <mesh name="rl_dg_1_3_c.STL" file="dg5f_right/collision/rl_dg_1_3_c.STL" />
+    <mesh name="rl_dg_1_4_c.STL" file="dg5f_right/collision/rl_dg_1_4_c.STL" />
+    <mesh name="rl_dg_1_tip_c.STL" file="dg5f_right/collision/rl_dg_1_tip_c.STL" />
+    <mesh name="rl_dg_2_1_c.STL" file="dg5f_right/collision/rl_dg_2_1_c.STL" />
+    <mesh name="rl_dg_2_2_c.STL" file="dg5f_right/collision/rl_dg_2_2_c.STL" />
+    <mesh name="rl_dg_2_3_c.STL" file="dg5f_right/collision/rl_dg_2_3_c.STL" />
+    <mesh name="rl_dg_2_4_c.STL" file="dg5f_right/collision/rl_dg_2_4_c.STL" />
+    <mesh name="rl_dg_2_tip_c.STL" file="dg5f_right/collision/rl_dg_2_tip_c.STL" />
+    <mesh name="rl_dg_3_1_c.STL" file="dg5f_right/collision/rl_dg_3_1_c.STL" />
+    <mesh name="rl_dg_3_2_c.STL" file="dg5f_right/collision/rl_dg_3_2_c.STL" />
+    <mesh name="rl_dg_3_3_c.STL" file="dg5f_right/collision/rl_dg_3_3_c.STL" />
+    <mesh name="rl_dg_3_4_c.STL" file="dg5f_right/collision/rl_dg_3_4_c.STL" />
+    <mesh name="rl_dg_3_tip_c.STL" file="dg5f_right/collision/rl_dg_3_tip_c.STL" />
+    <mesh name="rl_dg_4_1_c.STL" file="dg5f_right/collision/rl_dg_4_1_c.STL" />
+    <mesh name="rl_dg_4_2_c.STL" file="dg5f_right/collision/rl_dg_4_2_c.STL" />
+    <mesh name="rl_dg_4_3_c.STL" file="dg5f_right/collision/rl_dg_4_3_c.STL" />
+    <mesh name="rl_dg_4_4_c.STL" file="dg5f_right/collision/rl_dg_4_4_c.STL" />
+    <mesh name="rl_dg_4_tip_c.STL" file="dg5f_right/collision/rl_dg_4_tip_c.STL" />
+    <mesh name="rl_dg_5_1_c.STL" file="dg5f_right/collision/rl_dg_5_1_c.STL" />
+    <mesh name="rl_dg_5_2_c.STL" file="dg5f_right/collision/rl_dg_5_2_c.STL" />
+    <mesh name="rl_dg_5_3_c.STL" file="dg5f_right/collision/rl_dg_5_3_c.STL" />
+    <mesh name="rl_dg_5_4_c.STL" file="dg5f_right/collision/rl_dg_5_4_c.STL" />
+    <mesh name="rl_dg_5_tip_c.STL" file="dg5f_right/collision/rl_dg_5_tip_c.STL" />
   </asset>
 
   <worldbody>

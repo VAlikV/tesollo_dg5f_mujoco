@@ -1,29 +1,93 @@
-<mujoco model="Tesollo DG5F scene">
-  <include file="dg5f_right.xml"/>
+<mujoco model="ur10e scene">
+  <!-- <include file="ur10egripper.xml"/> -->
+  <include file="ur10edg5f.xml"/>
 
-  <!-- <include file="iiwa14_prefix.xml" prefix="r1" pos="0.0 0.0 0.0"/> -->
+  <compiler meshdir="assets"/>
+  <option integrator="RK4" timestep="0.002">
+    <flag multiccd="enable" nativeccd="enable"/>
+  </option>
 
-  <statistic center="0.2 0 0.2" extent="1.0"/>
+  <statistic center="-0.430 -0.367 -0.075" extent="0.7"/>
 
-   <visual>
-    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+  <default>
+    <default class="collision_obj">
+      <geom condim="4" contype="5" conaffinity="1" priority="1" group="1" 
+        solref="0.001 1.5" solimp="0.9 0.95 0.001" friction="1 1 0.005" />
+    </default>
+  </default>
+
+  <visual>
+    <headlight diffuse="0.8 0.8 0.8" ambient="0.2 0.2 0.2" specular="0 0 0"/>
     <rgba haze="0.15 0.25 0.35 1"/>
-    <global azimuth="120" elevation="-20" offwidth="1920" offheight="1080"/>
+    <global azimuth="145.000" elevation="-24.000"/>
   </visual>
 
   <asset>
-    <texture type="skybox" builtin="gradient" rgb1="0.95 0.95 0.95" rgb2="0.9 0.9 0.9" width="512" height="3072"/>
-    <texture name="grid" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512"
-      mark="cross" markrgb=".8 .8 .8"/>
-    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance="0.2"/>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+
+    <mesh name="bottom" file="box/bottom.stl" scale="0.5 0.5 0.5"/>
+    <mesh name="mid" file="box/mid.stl" scale="0.4 0.4 0.4"/>
+    <mesh name="cap" file="box/cap.stl" scale="0.5 0.5 0.5"/>
   </asset>
 
   <worldbody>
-    <light pos="0 0 1.5" directional="true"/>
-    <geom name="floor" size="1 1 0.01" type="plane" material="grid" contype="1" conaffinity="1"/>
-    <body name="target" pos="0.5 0 0.5" quat="1 0 0 0" mocap="true">
-      <geom type="box" size=".05 .05 .05" contype="0" conaffinity="0" rgba=".6 .3 .3 .5"/>
-      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="false"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <body name="table" pos="0.0 -0.65 0.075">
+      <!-- <joint/> -->
+      <geom type="box" size="0.5 0.3 0.075" rgba="0.8 0.8 0.8 1" class="collision_obj" />
+      <geom name="target_area" type="box" pos="0.1 0 0.076" size="0.1 0.1 0.001" rgba="0.6 0.4 0.2 1.0" contype="0" conaffinity="0"/>
     </body>
+
+    <body name="bottom" pos="-0.15 -0.55 0.2" quat="1.0 0.0 0.0 0.0">
+      <freejoint name="bottom_joint"/>
+      <inertial pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="2.7375e-05 7.6875e-05 9.75e-05" />
+      <!-- <geom name="bottom_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="bottom" class="collision_obj"/> -->
+      <geom name="bottom_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" rgba="0.5 0.5 0.5 1" type="mesh" mesh="bottom" contype="0" conaffinity="0"/>
+
+      <geom name="col_bottom" type="box" pos="0 0 0.0025" size="0.04 0.025 0.0025" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_wall1" type="box" pos="0.0375 0 0.01" size="0.0025 0.025 0.01" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_wall2" type="box" pos="-0.0375 0 0.01" size="0.0025 0.025 0.01" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_wall3" type="box" pos="0.0 0.0225 0.01" size="0.04 0.0025 0.01" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_wall4" type="box" pos="0.0 -0.0225 0.01" size="0.04 0.0025 0.01" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+    </body>
+
+    <body name="mid" pos="-0.15 -0.65 0.2" quat="1.0 0.0 0.0 0.0">
+      <freejoint name="mid_joint"/>
+      <inertial pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="2.925375e-05 7.695375e-05 9.102e-05" />
+      <!-- <geom name="mid_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="mid" class="collision_obj"/> -->
+      <!-- <geom name="mid_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" rgba="0 0.7 0 1" type="mesh" mesh="mid"/> -->
+      <geom name="mid_collision" type="box" pos="0 0 0.009" size="0.0272 0.0152 0.009" class="collision_obj" rgba="0.1 0.7 0.1 1.0"/>
+    </body>
+
+    <body name="cap" pos="-0.15 -0.75 0.2" quat="1.0 0.0 -1.0 0.0">
+      <freejoint name="cap_joint"/>
+      <inertial pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="0.00015375 0.00011775 5.475e-05" />
+      <!-- <geom name="cap_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="cap" class="collision_obj"/> -->
+      <geom name="cap_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" rgba="0.5 0.5 0.5 1" type="mesh" mesh="cap" contype="0" conaffinity="0"/>
+
+      <geom name="col_cap" type="box" pos="0.00125 0.0 0.0" size="0.00125 0.0275 0.0425" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall1" type="box" pos="0.0125 0.0 0.04175" size="0.0125 0.0275 0.00075" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall2" type="box" pos="0.0125 0.0 -0.04175" size="0.0125 0.0275 0.00075" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall3" type="box" pos="0.0125 0.02675 0.0" size="0.0125 0.00075 0.0425" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall4" type="box" pos="0.0125 -0.02675 0.0" size="0.0125 0.00075 0.0425" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      
+      <geom name="col_cap_wall5" type="box" pos="0.00875 0.0 0.038" size="0.00625 0.026 0.003" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall6" type="box" pos="0.00875 0.0 -0.038" size="0.00625 0.026 0.003" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+
+      <geom name="col_cap_wall7" type="box" pos="0.00875 0.023 0.0" size="0.00625 0.003 0.041" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/>
+      <geom name="col_cap_wall8" type="box" pos="0.00875 -0.023 0.0" size="0.00625 0.003 0.041" class="collision_obj" rgba="0.1 0.1 0.1 0.0"/> 
+    </body>
+    
+    <camera name="cam_front" pos="0 -1.1 0.37" quat="0.819134 0.573602 1.13747e-05 6.4521e-05" fovy="45"/>
+    <camera name="cam_side" pos="0.45 -0.83 0.40" quat="0.729512 0.472006 0.297701 0.395471" fovy="45"/>
+              
   </worldbody>
+
 </mujoco>
+
+<!-- <camera pos="0.344 -0.885 0.347" xyaxes="0.556 0.831 0.000 -0.274 0.183 0.944"/> -->

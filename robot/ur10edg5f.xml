@@ -1,0 +1,449 @@
+<mujoco model="robot">
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+  <option integrator="implicitfast"/>
+
+  <default>
+    <default class="robot">
+      <material specular="0.5" shininess="0.25"/>
+      <joint axis="0 1 0" range="-6.28319 6.28319" armature="0.1"/>
+      <position ctrlrange="-6.2831 6.2831"/>
+      <general biastype="affine" ctrlrange="-6.2831 6.2831" gainprm="5000" biasprm="0 -5000 -500"/>
+      <default class="size4">
+        <joint damping="10"/>
+        <general forcerange="-330 330"/>
+      </default>
+      <default class="size3">
+        <joint damping="5"/>
+        <general forcerange="-150 150"/>
+        <default class="size3_limited">
+          <joint range="-3.1415 3.1415"/>
+          <general ctrlrange="-3.1415 3.1415"/>
+        </default>
+      </default>
+      <default class="size2">
+        <joint damping="2"/>
+        <general forcerange="-56 56"/>
+      </default>
+      <default class="visual_ur">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision_ur">
+        <geom type="capsule" group="3"/>
+        <default class="eef_collision">
+          <geom type="cylinder"/>
+        </default>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+      <default class="motor">
+        <joint />
+        <motor />
+      </default>
+      <default class="visual_dg">
+        <geom material="visualgeom" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision_dg">
+        <geom material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" solref="0.005 1" solimp="0.99 0.999 1e-05" friction="1 0.01 0.01" />
+      </default>
+    </default>
+  </default>
+
+  <asset>
+    <material class="robot" name="black" rgba="0.033 0.033 0.033 1"/>
+    <material class="robot" name="jointgray" rgba="0.278 0.278 0.278 1"/>
+    <material class="robot" name="linkgray" rgba="0.82 0.82 0.82 1"/>
+    <material class="robot" name="urblue" rgba="0.49 0.678 0.8 1"/>
+
+    <mesh file="ur10e/base_0.obj"/>
+    <mesh file="ur10e/base_1.obj"/>
+    <mesh file="ur10e/shoulder_0.obj"/>
+    <mesh file="ur10e/shoulder_1.obj"/>
+    <mesh file="ur10e/shoulder_2.obj"/>
+    <mesh file="ur10e/upperarm_0.obj"/>
+    <mesh file="ur10e/upperarm_1.obj"/>
+    <mesh file="ur10e/upperarm_2.obj"/>
+    <mesh file="ur10e/upperarm_3.obj"/>
+    <mesh file="ur10e/forearm_0.obj"/>
+    <mesh file="ur10e/forearm_1.obj"/>
+    <mesh file="ur10e/forearm_2.obj"/>
+    <mesh file="ur10e/forearm_3.obj"/>
+    <mesh file="ur10e/wrist1_0.obj"/>
+    <mesh file="ur10e/wrist1_1.obj"/>
+    <mesh file="ur10e/wrist1_2.obj"/>
+    <mesh file="ur10e/wrist2_0.obj"/>
+    <mesh file="ur10e/wrist2_1.obj"/>
+    <mesh file="ur10e/wrist2_2.obj"/>
+    <mesh file="ur10e/wrist3.obj"/>
+
+    <material name="default_material" rgba="0.7 0.7 0.7 1" />
+    <material name="collision_material" rgba="0.7 0.7 0.7 1" />
+    <mesh name="rl_dg_mount_c.STL" file="dg5f_right/collision/rl_dg_mount_c.STL" />
+    <mesh name="rl_dg_base_c.STL" file="dg5f_right/collision/rl_dg_base_c.STL" />
+    <mesh name="rl_dg_palm_c.STL" file="dg5f_right/collision/rl_dg_palm_c.STL" />
+    <mesh name="rl_dg_1_1_c.STL" file="dg5f_right/collision/rl_dg_1_1_c.STL" />
+    <mesh name="rl_dg_1_2_c.STL" file="dg5f_right/collision/rl_dg_1_2_c.STL" />
+    <mesh name="rl_dg_1_3_c.STL" file="dg5f_right/collision/rl_dg_1_3_c.STL" />
+    <mesh name="rl_dg_1_4_c.STL" file="dg5f_right/collision/rl_dg_1_4_c.STL" />
+    <mesh name="rl_dg_1_tip_c.STL" file="dg5f_right/collision/rl_dg_1_tip_c.STL" />
+    <mesh name="rl_dg_2_1_c.STL" file="dg5f_right/collision/rl_dg_2_1_c.STL" />
+    <mesh name="rl_dg_2_2_c.STL" file="dg5f_right/collision/rl_dg_2_2_c.STL" />
+    <mesh name="rl_dg_2_3_c.STL" file="dg5f_right/collision/rl_dg_2_3_c.STL" />
+    <mesh name="rl_dg_2_4_c.STL" file="dg5f_right/collision/rl_dg_2_4_c.STL" />
+    <mesh name="rl_dg_2_tip_c.STL" file="dg5f_right/collision/rl_dg_2_tip_c.STL" />
+    <mesh name="rl_dg_3_1_c.STL" file="dg5f_right/collision/rl_dg_3_1_c.STL" />
+    <mesh name="rl_dg_3_2_c.STL" file="dg5f_right/collision/rl_dg_3_2_c.STL" />
+    <mesh name="rl_dg_3_3_c.STL" file="dg5f_right/collision/rl_dg_3_3_c.STL" />
+    <mesh name="rl_dg_3_4_c.STL" file="dg5f_right/collision/rl_dg_3_4_c.STL" />
+    <mesh name="rl_dg_3_tip_c.STL" file="dg5f_right/collision/rl_dg_3_tip_c.STL" />
+    <mesh name="rl_dg_4_1_c.STL" file="dg5f_right/collision/rl_dg_4_1_c.STL" />
+    <mesh name="rl_dg_4_2_c.STL" file="dg5f_right/collision/rl_dg_4_2_c.STL" />
+    <mesh name="rl_dg_4_3_c.STL" file="dg5f_right/collision/rl_dg_4_3_c.STL" />
+    <mesh name="rl_dg_4_4_c.STL" file="dg5f_right/collision/rl_dg_4_4_c.STL" />
+    <mesh name="rl_dg_4_tip_c.STL" file="dg5f_right/collision/rl_dg_4_tip_c.STL" />
+    <mesh name="rl_dg_5_1_c.STL" file="dg5f_right/collision/rl_dg_5_1_c.STL" />
+    <mesh name="rl_dg_5_2_c.STL" file="dg5f_right/collision/rl_dg_5_2_c.STL" />
+    <mesh name="rl_dg_5_3_c.STL" file="dg5f_right/collision/rl_dg_5_3_c.STL" />
+    <mesh name="rl_dg_5_4_c.STL" file="dg5f_right/collision/rl_dg_5_4_c.STL" />
+    <mesh name="rl_dg_5_tip_c.STL" file="dg5f_right/collision/rl_dg_5_tip_c.STL" />
+  </asset>
+
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="wrist_2_link" pos="0 -1 2"/>
+    <body name="base" quat="0 0 0 -1" childclass="robot">
+      <inertial mass="4.0" pos="0 0 0" diaginertia="0.0061063308908 0.0061063308908 0.01125"/>
+      <geom mesh="base_0" material="black" class="visual_ur"/>
+      <geom mesh="base_1" material="jointgray" class="visual_ur"/>
+      <body name="shoulder_link" pos="0 0 0.181">
+        <inertial pos="0 0 0" mass="7.778" diaginertia="0.0314743 0.0314743 0.0218756"/>
+        <joint name="shoulder_pan_joint" class="size4" axis="0 0 1"/>
+        <geom mesh="shoulder_0" material="urblue" class="visual_ur"/>
+        <geom mesh="shoulder_1" material="black" class="visual_ur"/>
+        <geom mesh="shoulder_2" material="jointgray" class="visual_ur"/>
+        <geom class="collision_ur" size="0.078 0.08" pos="0 0 -0.05"/>
+        <body name="upper_arm_link" pos="0 0.176 0" quat="1 0 1 0">
+          <inertial pos="0 0 0.3065" mass="12.93" diaginertia="0.423074 0.423074 0.0363656"/>
+          <joint name="shoulder_lift_joint" class="size4"/>
+          <geom mesh="upperarm_0" material="black" class="visual_ur"/>
+          <geom mesh="upperarm_1" material="jointgray" class="visual_ur"/>
+          <geom mesh="upperarm_2" material="urblue" class="visual_ur"/>
+          <geom mesh="upperarm_3" material="linkgray" class="visual_ur"/>
+          <geom class="collision_ur" pos="0 -0.05 0" quat="1 1 0 0" size="0.078 0.08"/>
+          <geom class="collision_ur" size="0.06 0.3" pos="0 0 0.3"/>
+          <body name="forearm_link" pos="0 -0.137 0.613">
+            <inertial pos="0 0 0.2855" mass="3.87" diaginertia="0.11059 0.11059 0.0108844"/>
+            <joint name="elbow_joint" class="size3_limited"/>
+            <geom mesh="forearm_0" material="urblue" class="visual_ur"/>
+            <geom mesh="forearm_1" material="black" class="visual_ur"/>
+            <geom mesh="forearm_2" material="jointgray" class="visual_ur"/>
+            <geom mesh="forearm_3" material="linkgray" class="visual_ur"/>
+            <geom class="collision_ur" pos="0 0.08 0" quat="1 1 0 0" size="0.058 0.065"/>
+            <geom class="collision_ur" size="0.043 0.28" pos="0 0 0.29"/>
+            <body name="wrist_1_link" pos="0 0 0.571" quat="1 0 1 0">
+              <inertial pos="0 0.135 0" quat="0.5 0.5 -0.5 0.5" mass="1.96"
+                diaginertia="0.0055125 0.00510825 0.00510825"/>
+              <joint name="wrist_1_joint" class="size2"/>
+              <geom mesh="wrist1_0" material="black" class="visual_ur"/>
+              <geom mesh="wrist1_1" material="urblue" class="visual_ur"/>
+              <geom mesh="wrist1_2" material="jointgray" class="visual_ur"/>
+              <geom class="collision_ur" pos="0 0.06 0" quat="1 1 0 0" size="0.05 0.07"/>
+              <body name="wrist_2_link" pos="0 0.135 0">
+                <inertial pos="0 0 0.12" quat="0.5 0.5 -0.5 0.5" mass="1.96"
+                  diaginertia="0.0055125 0.00510825 0.00510825"/>
+                <joint name="wrist_2_joint" axis="0 0 1" class="size2"/>
+                <geom mesh="wrist2_0" material="black" class="visual_ur"/>
+                <geom mesh="wrist2_1" material="urblue" class="visual_ur"/>
+                <geom mesh="wrist2_2" material="jointgray" class="visual_ur"/>
+                <geom class="collision_ur" size="0.046 0.065" pos="0 0 0.05"/>
+                <geom class="collision_ur" pos="0 0.028 0.12" quat="1 1 0 0" size="0.046 0.043"/>
+                <body name="wrist_3_link" pos="0 0 0.12">
+                  <inertial pos="0 0.092 0" quat="0 1 -1 0" mass="0.202"
+                    diaginertia="0.000204525 0.000144346 0.000144346"/>
+                  <joint name="wrist_3_joint" class="size2"/>
+                  <geom material="linkgray" mesh="wrist3" class="visual_ur"/>
+                  <geom class="eef_collision" pos="0 0.097 0" quat="1 1 0 0" size="0.046 0.02"/>
+                  <site name="attachment_site" pos="0 0.1 0" quat="-1 1 0 0"/>
+                
+                  <body name="rl_dg_mount" pos="0.0 0.11 0.0" quat="-1 1 -1 -1" childclass="robot">
+                  <!-- <freejoint name="floating_base" /> -->
+                  <geom name="rl_dg_mount_collision" pos="0 0 0" quat="1 0 0 0" type="mesh" mesh="rl_dg_mount_c.STL" class="collision_dg" />
+                  <geom name="rl_dg_mount_visual" pos="0 0 0" quat="1 0 0 0" material="default_material" type="mesh" mesh="rl_dg_mount_c.STL" class="visual_dg" />
+                    <body name="rl_dg_base" pos="0 0 0.004" quat="1.0 0.0 0.0 0.0">
+                      <inertial pos="-0.00058969 0.0005138 0.037363" quat="1.0 0.0 0.0 0.0" mass="0.45" diaginertia="0.00048608 0.00049085 0.00043369" />
+                      <geom name="rl_dg_base_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_base_c.STL" class="collision_dg" />
+                      <geom name="rl_dg_base_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_base_c.STL" class="visual_dg" />
+                      <body name="rl_dg_palm" pos="0 0 0.0698" quat="1.0 0.0 0.0 0.0">
+                        <inertial pos="-0.0089577 0.00095577 0.041325" quat="1.0 0.0 0.0 0.0" mass="0.35" diaginertia="0.00052656 0.00041654 0.00045783" />
+                        <geom name="rl_dg_palm_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_palm_c.STL" class="collision_dg" />
+                        <geom name="rl_dg_palm_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_palm_c.STL" class="visual_dg" />
+                        <body name="rl_dg_1_1" pos="-0.0162 0.019 0.0128" quat="1.0 0.0 0.0 0.0">
+                          <joint name="rj_dg_1_1" type="hinge" ref="0.0" class="motor" range="-0.3839724354387525 0.8901179185171081" axis="1 0 0" />
+                          <inertial pos="0.021473 3.1163E-06 0.0028146" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="4.2707e-06 1.3718e-05 1.2161e-05" />
+                          <geom name="rl_dg_1_1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_1_1_c.STL" class="collision_dg" />
+                          <geom name="rl_dg_1_1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_1_1_c.STL" class="visual_dg" />
+                          <body name="rl_dg_1_2" pos="0.04195 0.0 0.0" quat="1.0 0.0 0.0 0.0">
+                            <joint name="rj_dg_1_2" type="hinge" ref="0.0" class="motor" range="-3.141592653589793 0.0" axis="0 0 1" />
+                            <inertial pos="0.00055633 0.0155 0.00055633" quat="1.0 0.0 0.0 0.0" mass="0.025" diaginertia="1.9935e-06 1.459e-06 1.9935e-06" />
+                            <geom name="rl_dg_1_2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_1_2_c.STL" class="collision_dg" />
+                            <geom name="rl_dg_1_2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_1_2_c.STL" class="visual_dg" />
+                            <body name="rl_dg_1_3" pos="0.0 0.031 0.0" quat="1.0 0.0 0.0 0.0">
+                              <joint name="rj_dg_1_3" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="1 0 0" />
+                              <inertial pos="2.3008E-05 0.014842 4.7446E-06" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="5.9794e-06 2.458e-06 6.4181e-06" />
+                              <geom name="rl_dg_1_3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_1_3_c.STL" class="collision_dg" />
+                              <geom name="rl_dg_1_3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_1_3_c.STL" class="visual_dg" />
+                              <body name="rl_dg_1_4" pos="0.0 0.0388 0.0" quat="1.0 0.0 0.0 0.0">
+                                <joint name="rj_dg_1_4" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="1 0 0" />
+                                <inertial pos="-0.00020482 0.018795 -0.00036539" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="9.4915e-06 2.9391e-06 9.8194e-06" />
+                                <geom name="rl_dg_1_4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_1_4_c.STL" class="collision_dg" />
+                                <geom name="rl_dg_1_4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_1_4_c.STL" class="visual_dg" />
+                                <body name="rl_dg_1_tip" pos="0.0 0.0363 0.0" quat="1.0 0.0 0.0 0.0">
+                                  <inertial pos="5.479E-07 0.007157 0.0038063" quat="1.0 0.0 0.0 0.0" mass="0.005" diaginertia="1.9895e-07 2.5698e-07 3.2445e-07" />
+                                  <geom name="rl_dg_1_tip_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_1_tip_c.STL" class="collision_dg" />
+                                  <geom name="rl_dg_1_tip_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_1_tip_c.STL" class="visual_dg" />
+                                  <site name="rl_dg_1_tip_touch" pos="0.0 0.008 0.001" size="0.01" rgba="1 0 0 1"/>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                        <body name="rl_dg_2_1" pos="-0.0071 0.027 0.0661" quat="1.0 0.0 0.0 0.0">
+                          <joint name="rj_dg_2_1" type="hinge" ref="0.0" class="motor" range="-0.4188790204786391 0.6108652381980153" axis="1 0 0" />
+                          <inertial pos="0.001061 0.00024417 0.023499" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.5538e-06 9.5305e-06 7.0877e-06" />
+                          <geom name="rl_dg_2_1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_2_1_c.STL" class="collision_dg" />
+                          <geom name="rl_dg_2_1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_2_1_c.STL" class="visual_dg" />
+                          <body name="rl_dg_2_2" pos="0.01765 0.0 0.0265" quat="1.0 0.0 0.0 0.0">
+                            <joint name="rj_dg_2_2" type="hinge" ref="0.0" class="motor" range="-0.0 2.007128639793479" axis="0 1 0" />
+                            <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                            <geom name="rl_dg_2_2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_2_2_c.STL" class="collision_dg" />
+                            <geom name="rl_dg_2_2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_2_2_c.STL" class="visual_dg" />
+                            <body name="rl_dg_2_3" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                              <joint name="rj_dg_2_3" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                              <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                              <geom name="rl_dg_2_3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_2_3_c.STL" class="collision_dg" />
+                              <geom name="rl_dg_2_3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_2_3_c.STL" class="visual_dg" />
+                              <body name="rl_dg_2_4" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                                <joint name="rj_dg_2_4" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                                <inertial pos="-0.00070816 0.00043036 0.017842" quat="1.0 0.0 0.0 0.0" mass="0.025" diaginertia="2.8592e-06 2.3907e-06 1.6592e-06" />
+                                <geom name="rl_dg_2_4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_2_4_c.STL" class="collision_dg" />
+                                <geom name="rl_dg_2_4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_2_4_c.STL" class="visual_dg" />
+                                <body name="rl_dg_2_tip" pos="0.0 0.0 0.0255" quat="1.0 0.0 0.0 0.0">
+                                  <inertial pos="0.0038062910498208 5.47903831610297E-07 0.00715699051285251" quat="1.0 0.0 0.0 0.0" mass="0.005" diaginertia="3.24447323464583e-07 1.98954959099231e-07 2.56982145081954e-07" />
+                                  <geom name="rl_dg_2_tip_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_2_tip_c.STL" class="collision_dg" />
+                                  <geom name="rl_dg_2_tip_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_2_tip_c.STL" class="visual_dg" />
+                                  <site name="rl_dg_2_tip_touch" pos="0.001 0.0 0.008" size="0.01" rgba="1 0 0 1"/>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                        <body name="rl_dg_3_1" pos="-0.0071 0.0025 0.0701" quat="1.0 0.0 0.0 0.0">
+                          <joint name="rj_dg_3_1" type="hinge" ref="0.0" class="motor" range="-0.6108652381980153 0.6108652381980153" axis="1 0 0" />
+                          <inertial pos="0.0012558 -0.00017703 0.023374" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.233e-06 9.3331e-06 6.7817e-06" />
+                          <geom name="rl_dg_3_1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_3_1_c.STL" class="collision_dg" />
+                          <geom name="rl_dg_3_1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_3_1_c.STL" class="visual_dg" />
+                          <body name="rl_dg_3_2" pos="0.01765 0.0 0.0265" quat="1.0 0.0 0.0 0.0">
+                            <joint name="rj_dg_3_2" type="hinge" ref="0.0" class="motor" range="0.0 1.9547687622336491" axis="0 1 0" />
+                            <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                            <geom name="rl_dg_3_2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_3_2_c.STL" class="collision_dg" />
+                            <geom name="rl_dg_3_2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_3_2_c.STL" class="visual_dg" />
+                            <body name="rl_dg_3_3" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                              <joint name="rj_dg_3_3" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                              <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                              <geom name="rl_dg_3_3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_3_3_c.STL" class="collision_dg" />
+                              <geom name="rl_dg_3_3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_3_3_c.STL" class="visual_dg" />
+                              <body name="rl_dg_3_4" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                                <joint name="rj_dg_3_4" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                                <inertial pos="-0.00070816 0.00043036 0.017842" quat="1.0 0.0 0.0 0.0" mass="0.025" diaginertia="2.8592e-06 2.3907e-06 1.6592e-06" />
+                                <geom name="rl_dg_3_4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_3_4_c.STL" class="collision_dg" />
+                                <geom name="rl_dg_3_4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_3_4_c.STL" class="visual_dg" />
+                                <body name="rl_dg_3_tip" pos="0.0 0.0 0.0255" quat="1.0 0.0 0.0 0.0">
+                                  <inertial pos="0.0038062910498208 5.47903831610297E-07 0.00715699051285251" quat="1.0 0.0 0.0 0.0" mass="0.005" diaginertia="3.24447323464583e-07 1.98954959099231e-07 2.56982145081954e-07" />
+                                  <geom name="rl_dg_3_tip_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_3_tip_c.STL" class="collision_dg" />
+                                  <geom name="rl_dg_3_tip_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_3_tip_c.STL" class="visual_dg" />
+                                  <site name="rl_dg_3_tip_touch" pos="0.001 0.0 0.008" size="0.01" rgba="1 0 0 1"/>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                        <body name="rl_dg_4_1" pos="-0.0071 -0.022 0.0621" quat="1.0 0.0 0.0 0.0">
+                          <joint name="rj_dg_4_1" type="hinge" ref="0.0" class="motor" range="-0.6108652381980153 0.4188790204786391" axis="1 0 0" />
+                          <inertial pos="6.0566E-05 -0.00058566 0.023499" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.5541e-06 9.5306e-06 7.0879e-06" />
+                          <geom name="rl_dg_4_1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_4_1_c.STL" class="collision_dg" />
+                          <geom name="rl_dg_4_1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_4_1_c.STL" class="visual_dg" />
+                          <body name="rl_dg_4_2" pos="0.01765 0.0 0.0265" quat="1.0 0.0 0.0 0.0">
+                            <joint name="rj_dg_4_2" type="hinge" ref="0.0" class="motor" range="0.0 1.9024088846738192" axis="0 1 0" />
+                            <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                            <geom name="rl_dg_4_2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_4_2_c.STL" class="collision_dg" />
+                            <geom name="rl_dg_4_2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_4_2_c.STL" class="visual_dg" />
+                            <body name="rl_dg_4_3" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                              <joint name="rj_dg_4_3" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                              <inertial pos="-4.7446E-06 2.3008E-05 0.023958" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.4181e-06 5.9794e-06 2.458e-06" />
+                              <geom name="rl_dg_4_3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_4_3_c.STL" class="collision_dg" />
+                              <geom name="rl_dg_4_3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_4_3_c.STL" class="visual_dg" />
+                              <body name="rl_dg_4_4" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                                <joint name="rj_dg_4_4" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                                <inertial pos="-0.00070816 0.00043036 0.017842" quat="1.0 0.0 0.0 0.0" mass="0.025" diaginertia="2.8592e-06 2.3907e-06 1.6592e-06" />
+                                <geom name="rl_dg_4_4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_4_4_c.STL" class="collision_dg" />
+                                <geom name="rl_dg_4_4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_4_4_c.STL" class="visual_dg" />
+                                <body name="rl_dg_4_tip" pos="0.0 0.0 0.0255" quat="1.0 0.0 0.0 0.0">
+                                  <inertial pos="0.0038062910498208 5.47903831610297E-07 0.00715699051285251" quat="1.0 0.0 0.0 0.0" mass="0.005" diaginertia="3.24447323464583e-07 1.98954959099231e-07 2.56982145081954e-07" />
+                                  <geom name="rl_dg_4_tip_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_4_tip_c.STL" class="collision_dg" />
+                                  <geom name="rl_dg_4_tip_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_4_tip_c.STL" class="visual_dg" />
+                                  <site name="rl_dg_4_tip_touch" pos="0.001 0.0 0.008" size="0.01" rgba="1 0 0 1"/>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                        <body name="rl_dg_5_1" pos="0.0103 -0.0195 0.0182" quat="1.0 0.0 0.0 0.0">
+                          <joint name="rj_dg_5_1" type="hinge" ref="0.0" class="motor" range="-0.017453292519943295 1.0471975511965976" axis="0 0 1" />
+                          <inertial pos="-0.00433013582483537 -0.0250157327042134 0.0140244480786593" quat="1.0 0.0 0.0 0.0" mass="0.055" diaginertia="2.36207639664085e-05 2.36540063110524e-05 1.12977296557035e-05" />
+                          <geom name="rl_dg_5_1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_5_1_c.STL" class="collision_dg" />
+                          <geom name="rl_dg_5_1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_5_1_c.STL" class="visual_dg" />
+                          <body name="rl_dg_5_2" pos="0.0 -0.028 0.0381" quat="1.0 0.0 0.0 0.0">
+                            <joint name="rj_dg_5_2" type="hinge" ref="0.0" class="motor" range="-0.4188790204786391 0.6108652381980153" axis="1 0 0" />
+                            <inertial pos="-0.000537630631570108 0.000537630708726741 0.0155000698139622" quat="1.0 0.0 0.0 0.0" mass="0.025" diaginertia="1.99384439440442e-06 1.99384475671682e-06 1.4598228332417e-06" />
+                            <geom name="rl_dg_5_2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_5_2_c.STL" class="collision_dg" />
+                            <geom name="rl_dg_5_2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_5_2_c.STL" class="visual_dg" />
+                            <body name="rl_dg_5_3" pos="0.0 0.0 0.031" quat="1.0 0.0 0.0 0.0">
+                              <joint name="rj_dg_5_3" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                              <inertial pos="4.7446492172469E-06 2.30083649378834E-05 0.0148418615456518" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="6.41805423935041e-06 5.97938336588576e-06 2.4580051713906e-06" />
+                              <geom name="rl_dg_5_3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_5_3_c.STL" class="collision_dg" />
+                              <geom name="rl_dg_5_3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_5_3_c.STL" class="visual_dg" />
+                              <body name="rl_dg_5_4" pos="0.0 0.0 0.0388" quat="1.0 0.0 0.0 0.0">
+                                <joint name="rj_dg_5_4" type="hinge" ref="0.0" class="motor" range="-1.5707963267948966 1.5707963267948966" axis="0 1 0" />
+                                <inertial pos="-0.000365388872256418 -0.000204821110631699 0.0187946706549663" quat="1.0 0.0 0.0 0.0" mass="0.045" diaginertia="9.81936385229629e-06 9.49149264777591e-06 2.93905089746507e-06" />
+                                <geom name="rl_dg_5_4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_5_4_c.STL" class="collision_dg" />
+                                <geom name="rl_dg_5_4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_5_4_c.STL" class="visual_dg" />
+                                <body name="rl_dg_5_tip" pos="0.0 0.0 0.0363" quat="1.0 0.0 0.0 0.0">
+                                  <inertial pos="0.0038062910498208 5.47903831610297E-07 0.00715699051285251" quat="1.0 0.0 0.0 0.0" mass="0.005" diaginertia="3.24447323464583e-07 1.98954959099231e-07 2.56982145081954e-07" />
+                                  <geom name="rl_dg_5_tip_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="rl_dg_5_tip_c.STL" class="collision_dg" />
+                                  <geom name="rl_dg_5_tip_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="default_material" type="mesh" mesh="rl_dg_5_tip_c.STL" class="visual_dg" />
+                                  <site name="rl_dg_5_tip_touch" pos="0.001 0.0 0.008" size="0.01" rgba="1 0 0 1"/>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  <site name="rl_dg_mount_site" pos="0 0 0" quat="1 0 0 0" />
+                  <!-- <camera name="front_camera" mode="track" fovy="90.0" quat="4.329780281177467e-17 4.329780281177466e-17 0.7071067811865475 0.7071067811865476" pos="0.0 2.0 0.5" />
+                  <camera name="side_camera" mode="track" fovy="90.0" quat="-0.5 -0.4999999999999999 0.5 0.5000000000000001" pos="-2.0 0.0 0.5" /> -->
+                </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <general class="size4" name="shoulder_pan" joint="shoulder_pan_joint"/>
+    <general class="size4" name="shoulder_lift" joint="shoulder_lift_joint"/>
+    <general class="size3_limited" name="elbow" joint="elbow_joint"/>
+    <general class="size2" name="wrist_1" joint="wrist_1_joint"/>
+    <general class="size2" name="wrist_2" joint="wrist_2_joint"/>
+    <general class="size2" name="wrist_3" joint="wrist_3_joint"/>
+
+    <general name="rj_dg_1_1_ctrl" joint="rj_dg_1_1" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.384 0.890" />
+    <general name="rj_dg_1_2_ctrl" joint="rj_dg_1_2" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-3.142 0.000" />
+    <general name="rj_dg_1_3_ctrl" joint="rj_dg_1_3" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_1_4_ctrl" joint="rj_dg_1_4" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_2_1_ctrl" joint="rj_dg_2_1" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.419 0.611" />
+    <general name="rj_dg_2_2_ctrl" joint="rj_dg_2_2" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="0.000 2.007" />
+    <general name="rj_dg_2_3_ctrl" joint="rj_dg_2_3" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_2_4_ctrl" joint="rj_dg_2_4" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_3_1_ctrl" joint="rj_dg_3_1" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.611 0.611" />
+    <general name="rj_dg_3_2_ctrl" joint="rj_dg_3_2" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="0.000 1.955" />
+    <general name="rj_dg_3_3_ctrl" joint="rj_dg_3_3" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_3_4_ctrl" joint="rj_dg_3_4" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_4_1_ctrl" joint="rj_dg_4_1" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.611 0.419" />
+    <general name="rj_dg_4_2_ctrl" joint="rj_dg_4_2" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="0.000 1.902" />
+    <general name="rj_dg_4_3_ctrl" joint="rj_dg_4_3" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_4_4_ctrl" joint="rj_dg_4_4" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_5_1_ctrl" joint="rj_dg_5_1" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.017 1.047" />
+    <general name="rj_dg_5_2_ctrl" joint="rj_dg_5_2" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-0.419 0.611" />
+    <general name="rj_dg_5_3_ctrl" joint="rj_dg_5_3" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+    <general name="rj_dg_5_4_ctrl" joint="rj_dg_5_4" gaintype="fixed" biastype="affine" gear="1" gainprm="3 0 0" biasprm="0 -3 -0.1" ctrlrange="-1.571 1.571" />
+  </actuator>
+
+  <contact>
+
+    <exclude body1="wrist_3_link" body2="rl_dg_mount" />
+
+    <exclude body1="rl_dg_mount" body2="rl_dg_base" />
+    <exclude body1="rl_dg_base" body2="rl_dg_palm" />
+
+    <exclude body1="rl_dg_base" body2="rl_dg_1_1" />  <!---->
+    <exclude body1="rl_dg_palm" body2="rl_dg_1_1" />
+    <exclude body1="rl_dg_palm" body2="rl_dg_1_2" />  <!---->
+    <exclude body1="rl_dg_1_1" body2="rl_dg_1_2" />
+    <exclude body1="rl_dg_1_2" body2="rl_dg_1_3" />
+    <exclude body1="rl_dg_1_3" body2="rl_dg_1_4" />
+    <exclude body1="rl_dg_1_4" body2="rl_dg_1_tip" />
+
+    <exclude body1="rl_dg_base" body2="rl_dg_2_1" />  <!---->
+    <exclude body1="rl_dg_palm" body2="rl_dg_2_1" />
+    <exclude body1="rl_dg_palm" body2="rl_dg_2_2" />  <!---->
+    <exclude body1="rl_dg_2_1" body2="rl_dg_2_2" />
+    <exclude body1="rl_dg_2_2" body2="rl_dg_2_3" />
+    <exclude body1="rl_dg_2_3" body2="rl_dg_2_4" />
+    <exclude body1="rl_dg_2_4" body2="rl_dg_2_tip" />
+
+    <exclude body1="rl_dg_base" body2="rl_dg_3_1" />  <!---->
+    <exclude body1="rl_dg_palm" body2="rl_dg_3_1" />
+    <exclude body1="rl_dg_palm" body2="rl_dg_3_2" />  <!---->
+    <exclude body1="rl_dg_3_1" body2="rl_dg_3_2" />
+    <exclude body1="rl_dg_3_2" body2="rl_dg_3_3" />
+    <exclude body1="rl_dg_3_3" body2="rl_dg_3_4" />
+    <exclude body1="rl_dg_3_4" body2="rl_dg_3_tip" />
+
+    <exclude body1="rl_dg_base" body2="rl_dg_4_1" />  <!---->
+    <exclude body1="rl_dg_palm" body2="rl_dg_4_1" />
+    <exclude body1="rl_dg_palm" body2="rl_dg_4_2" />  <!---->
+    <exclude body1="rl_dg_4_1" body2="rl_dg_4_2" />
+    <exclude body1="rl_dg_4_2" body2="rl_dg_4_3" />
+    <exclude body1="rl_dg_4_3" body2="rl_dg_4_4" />
+    <exclude body1="rl_dg_4_4" body2="rl_dg_4_tip" />
+
+    <exclude body1="rl_dg_base" body2="rl_dg_5_1" />  <!---->
+    <exclude body1="rl_dg_palm" body2="rl_dg_5_1" />
+    <exclude body1="rl_dg_palm" body2="rl_dg_5_2" />  <!---->
+    <exclude body1="rl_dg_5_1" body2="rl_dg_5_2" />
+    <exclude body1="rl_dg_5_2" body2="rl_dg_5_3" />
+    <exclude body1="rl_dg_5_3" body2="rl_dg_5_4" />
+    <exclude body1="rl_dg_5_4" body2="rl_dg_5_tip" />
+  </contact>
+
+  <sensor>
+    <!-- <framepos name="rl_dg_mount_site_pos" objtype="site" objname="rl_dg_mount_site" />
+    <framequat name="rl_dg_mount_site_quat" objtype="site" objname="rl_dg_mount_site" />
+    <framelinvel name="rl_dg_mount_site_linvel" objtype="site" objname="rl_dg_mount_site" />
+    <frameangvel name="rl_dg_mount_site_angvel" objtype="site" objname="rl_dg_mount_site" />
+    <velocimeter name="rl_dg_mount_site_vel" site="rl_dg_mount_site" /> -->
+    <force name="rl_dg_1_tip_force" site="rl_dg_1_tip_touch"/>
+    <force name="rl_dg_2_tip_force" site="rl_dg_2_tip_touch"/>
+    <force name="rl_dg_3_tip_force" site="rl_dg_3_tip_touch"/>
+    <force name="rl_dg_4_tip_force" site="rl_dg_4_tip_touch"/>
+    <force name="rl_dg_5_tip_force" site="rl_dg_5_tip_touch"/>
+  </sensor>
+
+  <keyframe>
+    <key name="home" qpos="-1.5708 -1.5708 1.5708 -1.5708 -1.5708 0
+                            0.0 0.0 0.0 0.0
+                            0.0 0.0 0.0 0.0
+                            0.0 0.0 0.0 0.0
+                            0.0 0.0 0.0 0.0
+                            0.0 0.0 0.0 0.0" 
+                    
+                    ctrl="-1.5708 -1.5708 1.5708 -1.5708 -1.5708 0
+                          0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0
+                          0.0 0.0 0.0 0.0"/>
+  </keyframe>
+</mujoco>

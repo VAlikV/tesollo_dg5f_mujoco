@@ -1,0 +1,29 @@
+<mujoco model="Tesollo DG5F scene">
+  <include file="dg5f_right.xml"/>
+
+  <!-- <include file="iiwa14_prefix.xml" prefix="r1" pos="0.0 0.0 0.0"/> -->
+
+  <statistic center="0.2 0 0.2" extent="1.0"/>
+
+   <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20" offwidth="1920" offheight="1080"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.95 0.95 0.95" rgb2="0.9 0.9 0.9" width="512" height="3072"/>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512"
+      mark="cross" markrgb=".8 .8 .8"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance="0.2"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.5" directional="true"/>
+    <geom name="floor" size="1 1 0.01" type="plane" material="grid" contype="1" conaffinity="1"/>
+    <body name="target" pos="0.5 0 0.5" quat="1 0 0 0" mocap="true">
+      <geom type="box" size=".05 .05 .05" contype="0" conaffinity="0" rgba=".6 .3 .3 .5"/>
+      <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
+    </body>
+  </worldbody>
+</mujoco>

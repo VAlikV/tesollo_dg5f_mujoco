@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from simulator import Simulator
+from control_simulator import Simulator
 from pathlib import Path
 from typing import Dict
 # import pinocchio as pin
