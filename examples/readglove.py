@@ -6,7 +6,7 @@ glove = serial.Serial("/dev/ttyUSB0", baudrate=115200)
 while 1:
     a = glove.readline().decode("utf-8")
     try: 
-        digits = list(map(float, a[1:-3].split(',')))
+        digits = list(map(float, a[1:-4].split(',')))
         print(digits)
     except:
         print("SOS")

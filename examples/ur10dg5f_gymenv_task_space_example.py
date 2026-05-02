@@ -1,5 +1,5 @@
 import numpy as np
-from gymlike_env.env import AssemblingEnv
+from gymlike_env.env_dg_ur import AssemblingEnv
 import matplotlib.pyplot as plt
 import cv2
 import time

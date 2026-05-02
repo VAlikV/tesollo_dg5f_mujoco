@@ -25,5 +25,8 @@
       <geom type="box" size=".05 .05 .05" contype="0" conaffinity="0" rgba=".6 .3 .3 .5"/>
       <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
     </body>
+
+    <camera name="cam_front" pos="0 -1.1 0.37" quat="0.819134 0.573602 1.13747e-05 6.4521e-05" fovy="45"/>
+    <camera name="cam_side" pos="0.45 -0.83 0.40" quat="0.729512 0.472006 0.297701 0.395471" fovy="45"/>
   </worldbody>
 </mujoco>
