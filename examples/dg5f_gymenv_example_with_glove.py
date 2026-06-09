@@ -4,13 +4,14 @@ import matplotlib.pyplot as plt
 import cv2
 import time
 import serial
+import threading
 
-glove = serial.Serial("/dev/ttyUSB0", baudrate=115200)
+glove = serial.Serial("/dev/ttyUSB0", baudrate=115200, timeout=0.1)
 
 env = HandEnv(xml_path="robot/scene_dg.xml",
             sim_timestep = 0.001,
             control_hz = 20.0,
-            mode = "fast",   # "realtime" | "fast"
+            mode = "realtime",   # "realtime" | "fast"
             max_episode_steps = 1000,
             render_mode="all",   # None | "human" | "rgb_array" | "all"
 )
@@ -24,43 +25,58 @@ print(start_pos)
 digits = start_pos
 
 t = time.time()
+stop_glove_reader = threading.Event()
+digits_lock = threading.Lock()
+
+
+def read_glove():
+    global digits
+    while not stop_glove_reader.is_set():
+        a = glove.readline().decode("utf-8", errors="ignore")
+        if not a:
+            continue
+        try:
+            new_digits = np.array(list(map(float, a[1:-4].split(',')))[1:])
+            new_digits[0] = 1*(new_digits[0]+30)
+            new_digits[1] = -1*(new_digits[1] - 78)
+            new_digits[2] = -1*(new_digits[2] - 17)
+            new_digits[3] = -1*(new_digits[3] - 17)
+
+            new_digits[5] *= -1
+            new_digits[6] *= -1
+            new_digits[7] *= -1
+
+            new_digits[9] *= -1
+            new_digits[10] *= -1
+            new_digits[11] *= -1
+
+            new_digits[12] *= 1
+            new_digits[13] *= -1
+            new_digits[14] *= -1
+            new_digits[15] *= -1
+
+            new_digits[16] *= 0
+            new_digits[18] *= -1
+            new_digits[19] *= -1
+
+            with digits_lock:
+                digits = new_digits
+        except:
+            print("SOS")
+
+
+glove_thread = threading.Thread(target=read_glove, daemon=True)
+glove_thread.start()
 
 # plt.ion()
 # fig, axes = plt.subplots(1, 3, figsize=(10, 5))
 
 for _ in range(1001):
 
-    a = glove.readline().decode("utf-8")
-    try: 
-        digits = np.array(list(map(float, a[1:-4].split(',')))[1:])
-        digits[0] = 1*(digits[0]+30)
-        digits[1] = -1*(digits[1] - 78)
-        digits[2] = -1*(digits[2] - 17)
-        digits[3] = -1*(digits[3] - 17)
+    with digits_lock:
+        current_digits = digits.copy()
 
-        digits[5] *= -1
-        digits[6] *= -1
-        digits[7] *= -1
-
-        digits[9] *= -1
-        digits[10] *= -1
-        digits[11] *= -1
-
-        digits[12] *= 1
-        digits[13] *= -1
-        digits[14] *= -1
-        digits[15] *= -1
-
-        # digits[16] = -1*(digits[16]+15)
-        digits[18] *= -1
-        digits[19] *= -1
-
-        # print(digits)
-        # print(len(digits))
-    except:
-        print("SOS")
-
-    obs, reward, terminated, truncated, info = env.step(digits*np.pi/180)
+    obs, reward, terminated, truncated, info = env.step(current_digits*np.pi/180)
 
     imgs = obs["images"]
 
@@ -84,6 +100,9 @@ for _ in range(1001):
     # if _ % 100 == 0:
     #     obs, info = env.reset()
 
+stop_glove_reader.set()
+glove_thread.join(timeout=1.0)
+glove.close()
 env.close()
 
 # plt.ioff()
