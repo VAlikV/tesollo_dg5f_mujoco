@@ -213,6 +213,8 @@ class HandEnv(gym.Env):
         # ----------------------
         n_joints = len(self.joints_qpos_idx)
 
+        print("n:", n_joints)
+
         state_space = spaces.Dict({
             "joint_pos": spaces.Box(
                 low=-np.inf, high=np.inf, shape=(n_joints,), dtype=np.float32

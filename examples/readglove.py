@@ -8,6 +8,7 @@ while 1:
     try: 
         digits = list(map(float, a[1:-4].split(',')))
         print(digits)
+        print(len(digits))
     except:
         print("SOS")
     
